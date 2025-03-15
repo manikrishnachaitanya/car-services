@@ -14,6 +14,8 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	// tag::actuator[]
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	// end::actuator[]

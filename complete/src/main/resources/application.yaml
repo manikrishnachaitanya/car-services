@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: car-services
+  profiles:
+    active: dev
+server:
+  port: 8080
+logging:
+  level:
+    root: info
+    com.example.myapp: debug
