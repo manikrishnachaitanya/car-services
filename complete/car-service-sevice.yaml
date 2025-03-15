@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-services
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: car-services
+  template:
+    metadata:
+      labels:
+        app: car-services
+    spec:
+      containers:
+        - name: car-services
+          image: chaitanya2012/car-services # Change to your Docker Hub image
+          ports:
+            - containerPort: 8081
+      imagePullSecrets:
+        - name: docker-hub-secret
+                
+                
+kubectl create secret docker-registry my-docker-hub-secret --docker-username=chaitanya2012 --docker-password=Universal*9 --docker-email=chaitanya2012@ymail.com
+  
+  
+  kubectl create secret docker-registry docker-hub-secret \
+  --docker-server=https://index.docker.io/v1/ \
+  --docker-username=chaitanya2012 \
+  --docker-password="Universal*9" \
+  --docker-email=chaitanya2012@ymail.com
