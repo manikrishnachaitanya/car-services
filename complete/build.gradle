@@ -30,6 +30,10 @@ dependencies {
 	// end::tests[]
 }
 
+tasks.withType(JavaCompile) {
+	options.annotationProcessorPath = configurations.annotationProcessor
+}
+
 test {
 	useJUnitPlatform()
 }
