@@ -32,4 +32,4 @@ jobs:
 
       
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon --refresh-dependencies
+        run: ./complete/gradlew build --no-daemon --refresh-dependencies
