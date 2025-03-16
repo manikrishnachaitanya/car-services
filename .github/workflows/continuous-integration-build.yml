@@ -20,6 +20,18 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'temurin'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew clean build --refresh-dependencies # Ensure you run 'clean build' to force fresh compilation
+        run: ./gradlew build --no-daemon --refresh-dependencies
