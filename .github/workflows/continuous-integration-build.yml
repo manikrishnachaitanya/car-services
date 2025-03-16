@@ -22,4 +22,4 @@ jobs:
           java-version: '17'
 
       - name: Build with Gradle
-        run: ./gradlew clean build  # Ensure you run 'clean build' to force fresh compilation
+        run: ./gradlew clean build --refresh-dependencies # Ensure you run 'clean build' to force fresh compilation
