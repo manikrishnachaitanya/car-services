@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '3.3.0'
 	id 'java'
+	id 'io.freefair.lombok' version '8.1.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -14,15 +15,24 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	// tag::actuator[]
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	// end::actuator[]
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// logback dependency
+	implementation 'org.springframework.boot:spring-boot-starter-logging'
+	// actuator dependency
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
 	// tag::tests[]
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	// end::tests[]
+}
+
+tasks.withType(JavaCompile) {
+	options.annotationProcessorPath = configurations.annotationProcessor
 }
 
 test {

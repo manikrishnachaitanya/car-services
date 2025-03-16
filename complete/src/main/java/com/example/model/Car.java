@@ -1,18 +1,15 @@
 package com.example.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.beans.ConstructorProperties;
 
 
 @ToString
-@Getter
-@Setter
 @AllArgsConstructor
+@Data
 public class Car {
+    private Long id;
     private String make;
     private String model;
     private Integer year;
