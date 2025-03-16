@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: car-services
+  profiles:
+    active: dev
+server:
+  port: 8090
+  servlet:
+    context-path: /api
+logging:
+  level:
+    root: TRACE
+    org:
+      apache:
+        tomcat: INFO
+    com.example.myapp: debug
