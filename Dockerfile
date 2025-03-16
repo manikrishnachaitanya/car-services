@@ -5,7 +5,7 @@ FROM eclipse-temurin:latest
 WORKDIR /app
 
 # Copy the built Spring Boot application JAR to the container
-COPY build/libs/spring-boot-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/car-services-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
 EXPOSE 8081
