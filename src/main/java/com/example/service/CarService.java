@@ -1,11 +1,16 @@
 package com.example.service;
 
 import com.example.model.Car;
+import com.example.web.client.PricingServiceClient;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +20,9 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class CarService {
+
+    @Autowired
+    PricingServiceClient pricingServiceClient;
 
     private static final Logger log = LoggerFactory.getLogger(CarService.class);
     private List<Car> cars = new ArrayList<>();
@@ -57,6 +65,10 @@ public class CarService {
         return null;
     }
 
-
+    public Integer estimatePrice(Long id) {
+        Car car = getCarById(id);
+        log.info("Car found : {}", car);
+        return pricingServiceClient.getPriceEstimate(car).block();
+    }
 
 }
