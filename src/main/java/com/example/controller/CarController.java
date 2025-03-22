@@ -31,9 +31,9 @@ public class CarController {
         return carService.getCarById(id);
     }
 
-    @GetMapping("/{id}/estimate")
-    public Integer getCarWithEstimate(@PathVariable Long id) {
-        return carService.estimatePrice(id);
+    @GetMapping("/{id}/price")
+    public Car getCarWithPrice(@PathVariable Long id) {
+        return carService.getCarWithPrice(id);
     }
 
 }

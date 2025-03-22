@@ -65,10 +65,12 @@ public class CarService {
         return null;
     }
 
-    public Integer estimatePrice(Long id) {
+    public Car getCarWithPrice(Long id) {
         Car car = getCarById(id);
         log.info("Car found : {}", car);
-        return pricingServiceClient.getPriceEstimate(car).block();
+        Integer price = pricingServiceClient.getPriceEstimate(car).block();
+        car.setPrice(price);
+        return car;
     }
 
 }
