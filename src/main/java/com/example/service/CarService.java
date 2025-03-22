@@ -29,13 +29,13 @@ public class CarService {
 
     @PostConstruct
     public void setCars() {
-        Car car1 = new Car(1231L,"toyota", "corolla", 2006);
+        Car car1 = new Car(1231L,"toyota", "corolla", 2006, null);
         cars.add(car1);
-        Car car4 = new Car(1232L, "toyota", "camry", 20019);
+        Car car4 = new Car(1232L, "toyota", "camry", 20019, null);
         cars.add(car4);
-        Car car2 = new Car(1233L, "honda", "civic", 2010);
+        Car car2 = new Car(1233L, "honda", "civic", 2010, null);
         cars.add(car2);
-        Car car3 = new Car(1234L, "mazda", "cx-5", 2008);
+        Car car3 = new Car(1234L, "mazda", "cx-5", 2008, null);
         cars.add(car3);
     }
 
@@ -68,8 +68,13 @@ public class CarService {
     public Car getCarWithPrice(Long id) {
         Car car = getCarById(id);
         log.info("Car found : {}", car);
-        Integer price = pricingServiceClient.getPriceEstimate(car).block();
-        car.setPrice(price);
+        try {
+            Integer price = pricingServiceClient.getPriceEstimate(car).block();
+            car.setPrice(price);
+        }
+        catch (Exception exception) {
+            log.error("Exception while getting price", exception);
+        }
         return car;
     }
 
